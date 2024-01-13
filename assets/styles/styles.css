@@ -1,12 +1,35 @@
+@font-face {
+  font-family: "IBM Plex Mono Bold";
+  src: url("../fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "IBM Plex Mono Light";
+  src: url("../fonts/IBM_Plex_Mono/IBMPlexMono-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins Semi Bold";
+  src: url("../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins Light";
+  src: url("../fonts/Poppins/Poppins-Light.ttf") format("truetype");
+}
 html {
   height: 100%;
 }
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background-color: black;
   background-image: url("../images/background.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .login-box {
@@ -18,7 +41,7 @@ body {
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.5);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.3);
   border-radius: 10px;
 }
 
@@ -27,6 +50,7 @@ body {
   padding: 0;
   color: #000;
   text-align: center;
+  font-family: "IBM Plex Mono Bold";
 }
 
 .login-box .user-box {
@@ -40,7 +64,7 @@ body {
   color: #000;
   margin-bottom: 30px;
   border: none;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #fff;
   outline: none;
   background: transparent;
 }
@@ -49,7 +73,8 @@ body {
   top: 0;
   left: 0;
   padding: 10px 0;
-  font-size: 16px;
+  font-family: "IBM Plex Mono Light";
+  font-size: 14px;
   color: #000;
   pointer-events: none;
   transition: 0.5s;
@@ -59,20 +84,22 @@ body {
 .login-box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: #00D4A1;
-  font-size: 14px;
+  color: #00d4a1;
+  font-family: "IBM Plex Mono Bold";
 }
 
 .login-box form .submit {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-box form .submit button {
+  cursor: pointer;
   padding: 10px 50px;
-  background: #00D4A1;
+  background: #00d4a1;
   color: #000;
+  font-family: "IBM Plex Mono Bold";
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
@@ -85,7 +112,7 @@ body {
 
 .login-box form .submit button:hover {
   font-size: 18px;
-  padding: 15px 60px;
-  box-shadow: 0 0 2px #00D4A1, 0 0 3px #00D4A1, 0 0 7px #00D4A1,
-    0 0 10px #00D4A1;
+  padding: 10px 60px;
+  box-shadow: 0 0 2px #00d4a1, 0 0 3px #00d4a1, 0 0 7px #00d4a1,
+    0 0 10px #00d4a1;
 }

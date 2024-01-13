@@ -1,0 +1,3 @@
+- Check for the validity of the JWT obtained from the signin endpoint.
+- Inspect the JWT to discover the ID of the authenticated user.
+- Provide a method to log out.
