@@ -37,7 +37,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     const userData = responseData.data.user;
 
     // Display user information on the page
-    console.log("User data:", userData);
+    console.log("User data: ", userData);
+
+    // Add event listener for the logout button
+    document.getElementById("logoutButton").addEventListener("click", () => {
+        localStorage.removeItem("jwt");
+        window.location.href = "index.html";
+    })
   } catch (error) {
     console.error("GraphQL request failed:", error.message);
   }
