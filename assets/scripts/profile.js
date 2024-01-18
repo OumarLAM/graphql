@@ -1,161 +1,79 @@
+import { fetchData } from "./graphqlFetcher.js";
+import {
+  displayBasicUserData,
+  displayXPAmount,
+  displayListData,
+} from "./displayHelper.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
   const jwt = localStorage.getItem("jwt");
 
   if (!jwt) {
-    // If JWT is not present, redirect to the login page
     window.location.href = "index.html";
   }
 
-  const domain = "https://learn.zone01dakar.sn";
-
   try {
-    const response = await fetch(`${domain}/api/graphql-engine/v1/graphql`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + jwt,
-      },
-      body: JSON.stringify({
-        query: `
-            {
-              user {
-                id
-                login
-              }
-            }
-          `,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message);
-    }
-
-    const responseData = await response.json();
+    // ******************* Query basic user Identification ************************* //
+    const responseData = await fetchData(jwt, ` {user { id login} }`);
     const userData = responseData.data.user;
 
-    // Display basic user identification in the page
-    document.getElementById("userId").innerText = userData[0].id;
-    document.getElementById("userLogin").innerText = userData[0].login;
+    displayBasicUserData(userData);
 
-    // Query XP Amount
-    const responseXP = await fetch(`${domain}/api/graphql-engine/v1/graphql`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + jwt,
-      },
-      body: JSON.stringify({
-        query: `
-          {
+    // ***************************** Query XP Amount ****************************** //
+    const xpResponse = await fetchData(
+      jwt,
+      `{
             transaction(where: {userId: {_eq: ${userData[0].id} }, type: { _eq: "xp"} }) {
               amount
             }
-          }
-          `,
-      }),
-    });
+          }`
+    );
 
-    if (!responseXP.ok) {
-      const errorData = await responseXP.json();
-      throw new Error(errorData.message);
-    }
-
-    const responseXPData = await responseXP.json();
-    const xpAmount = responseXPData.data.transaction.reduce(
+    const xpAmount = xpResponse.data.transaction.reduce(
       (sum, tx) => sum + tx.amount,
       0
     );
 
-    // Display XP Amount
-    document.getElementById("xpAmount").innerText = xpAmount;
+    displayXPAmount(xpAmount);
 
-    // Query grades
-    const responseGrades = await fetch(
-      `${domain}/api/graphql-engine/v1/graphql`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + jwt,
-        },
-        body: JSON.stringify({
-          query: `
-            {
+    // ****************************** Query grades ****************************** //
+    const gradesResponse = await fetchData(
+      jwt,
+      `
+        {
               progress(where: { userId: { _eq: ${userData[0].id} } }) {
                 objectId
                 grade
               }
             }
-          `,
-        }),
-      }
+          `
     );
 
-    if (!responseGrades.ok) {
-      const errorData = await responseGrades.json();
-      throw new Error(errorData.message);
-    }
+    const gradesData = gradesResponse.data.progress;
 
-    const responseGradesData = await responseGrades.json();
-    const gradesData = responseGradesData.data.progress;
+    displayListData(gradesData, "gradesList", "objectId", "grade");
 
-    // Display grades on the page
-    gradesData.forEach((grade) => {
-      const gradeElement = document.createElement("li");
-      gradeElement.innerText = `Object ID: ${grade.objectId}, Grade: ${grade.grade}`;
-      document.getElementById("gradesList").appendChild(gradeElement);
-    });
-
-    // Query Audits
-    const responseAudits = await fetch(
-      `${domain}/api/graphql-engine/v1/graphql`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + jwt,
-        },
-        body: JSON.stringify({
-          query: `
+    // ***************************** Query Audits ********************************* //
+    const auditsResponse = await fetchData(
+      jwt,
+      `
             {
               result(where: {userId: { _eq: ${userData[0].id}}}) {
                 objectId
                 type
               }
             }
-          `,
-        }),
-      }
+          `
     );
 
-    if (!responseAudits.ok) {
-      const errorData = await responseAudits.json();
-      throw new Error(errorData.message);
-    }
+    const auditsData = auditsResponse.data.result;
 
-    const responseAuditsData = await responseAudits.json();
-    const auditsData = responseAuditsData.data.result;
+    displayListData(auditsData, "auditsList", "objectId", "type");
 
-    // Display audits on the page
-    auditsData.forEach(audit => {
-      const auditElement = document.createElement("li");
-      auditElement.innerText = `Object ID: ${audit.objectId}, Type: ${audit.type}`;
-      document.getElementById("auditsList").appendChild(auditElement);
-    });
-
-    // Query Skills
-    const responseSkills = await fetch(
-      `${domain}/api/graphql-engine/v1/graphql`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + jwt,
-        },
-        body: JSON.stringify({
-          query: `
+    // ******************************** Query Skills ****************************** //
+    const skillsResponse = await fetchData(
+      jwt,
+      `
           {
             object {
               id
@@ -163,25 +81,13 @@ document.addEventListener("DOMContentLoaded", async function () {
               type
             }
           }
-          `,
-        }),
-      }
+          `
     );
 
-    if (!responseSkills.ok) {
-      const errorData = await responseSkills.json();
-      throw new Error(errorData.message);
-    }
+    const skillsData = skillsResponse.data.object;
 
-    const responseSkillsData = await responseSkills.json();
-    const skillsData = responseSkillsData.data.object;
+    displayListData(skillsData, "skillsList", "name", "type");
 
-    // Display skills on the page
-    skillsData.forEach(skill => {
-      const skillElement = document.createElement("li");
-      skillElement.innerText = `Skill ID: ${skill.id}, Name: ${skill.name}, Type: ${skill.type}`;
-      document.getElementById("skillsList").appendChild(skillElement);
-    });
     // Add event listener for the logout button
     document.getElementById("logoutButton").addEventListener("click", () => {
       localStorage.removeItem("jwt");
