@@ -25,13 +25,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   background-image: url("../images/background.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+ 
 }
 
+/* ********* Login Page ********* */
 .login-box {
   position: absolute;
   top: 50%;
@@ -115,4 +117,28 @@ body {
   padding: 10px 60px;
   box-shadow: 0 0 2px #00d4a1, 0 0 3px #00d4a1, 0 0 7px #00d4a1,
     0 0 10px #00d4a1;
+}
+
+
+/* ********* Profile Page ********** */
+.profile {
+  color: #fff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+header h2 {
+  font-family: "IBM Plex Mono Light";
+
+}
+
+header a span {
+  color: #9969ff;
+  cursor: pointer;
 }

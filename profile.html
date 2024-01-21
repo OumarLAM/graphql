@@ -3,44 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./assets/styles/styles.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
     <title>01Talent</title>
   </head>
   <body>
-    <h2>Welcome to my Profile</h2>
-    <!-- Basic User Identification -->
-    <div>
-      <h3>Basic User Identification</h3>
-      <p>User ID: <span id="userId"></span></p>
-      <p>Login: <span id="userLogin"></span></p>
-    </div>
+    <main class="profile">
+      <header>
+        <h2>Welcome, <span id="userLogin"></span>!</h2>
+        <a id="logoutButton" alt="logout"
+          ><span class="material-symbols-outlined"> logout </span></a
+        >
+      </header>
 
-    <!-- XP Amount -->
-    <div>
-      <h3>XP Amount</h3>
-      <p>Total XP: <span id="xpAmount"></span></p>
-    </div>
+      <!-- XP Amount -->
+      <div>
+        <h3>XP Amount</h3>
+        <p>Total XP: <span id="xpAmount"></span></p>
+      </div>
 
-    <!-- Grades -->
-    <div>
-      <h3>Grades</h3>
-      <ul id="gradesList"></ul>
-    </div>
+      <!-- Grades -->
+      <div>
+        <h3>Grades</h3>
+        <ul id="gradesList"></ul>
+      </div>
 
-    <!-- Audits -->
-    <div>
-      <h3>Audits</h3>
-      <ul id="auditsList"></ul>
-    </div>
+      <!-- Audits -->
+      <div>
+        <h3>Audits</h3>
+        <ul id="auditsList"></ul>
+      </div>
 
-    <!-- Skills -->
-    <div>
-      <h3>Skills</h3>
-      <ul id="skillsList"></ul>
-    </div>
+      <!-- Skills -->
+      <div>
+        <h3>Skills</h3>
+        <ul id="skillsList"></ul>
+      </div>
 
-    <!-- Logout Button -->
-    <button id="logoutButton">Logout</button>
+      <svg width="600" height="600" id="xpGraph">
+        <!-- Graph title -->
+        <text x="400" y="30" text-anchor="middle" font-size="16" fill="black">
+          XP Earned by Project
+        </text>
+      </svg>
+    </main>
     <script type="module" src="./assets/scripts/profile.js"></script>
   </body>
 </html>

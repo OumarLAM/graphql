@@ -1,5 +1,5 @@
 function displayBasicUserData(userData) {
-  document.getElementById("userId").innerText = userData[0].id;
+//   document.getElementById("userId").innerText = userData[0].id;
   document.getElementById("userLogin").innerText = userData[0].login;
 }
 

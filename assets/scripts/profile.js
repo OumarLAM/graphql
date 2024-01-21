@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     // ******************* Query basic user Identification ************************* //
     const responseData = await fetchData(jwt, ` {user { id login} }`);
     const userData = responseData.data.user;
-
     displayBasicUserData(userData);
 
     // ***************************** Query XP Amount ****************************** //
@@ -25,6 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       `{
             transaction(where: {userId: {_eq: ${userData[0].id} }, type: { _eq: "xp"} }) {
               amount
+              path
             }
           }`
     );
@@ -33,9 +33,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       (sum, tx) => sum + tx.amount,
       0
     );
-
     displayXPAmount(xpAmount);
 
+   
     // ****************************** Query grades ****************************** //
     const gradesResponse = await fetchData(
       jwt,
@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
 
     const gradesData = gradesResponse.data.progress;
-
     displayListData(gradesData, "gradesList", "objectId", "grade");
 
     // ***************************** Query Audits ********************************* //
@@ -67,7 +66,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
 
     const auditsData = auditsResponse.data.result;
-
     displayListData(auditsData, "auditsList", "objectId", "type");
 
     // ******************************** Query Skills ****************************** //
@@ -85,7 +83,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
 
     const skillsData = skillsResponse.data.object;
-
     displayListData(skillsData, "skillsList", "name", "type");
 
     // Add event listener for the logout button
