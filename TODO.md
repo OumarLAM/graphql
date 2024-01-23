@@ -6,7 +6,5 @@
 - [ ] Learn how to use GraphiQL to more easily explore the schema to use arguments
 - [ ] Show at least three pieces of information in the profile page 
 - [ ] Separate XP in three parts (Go, div01, JS), and the sum of them all (total XP)
-- [ ] Show level in any section (Go, div01, JS)
-- [ ] Sort grades per section (Go, div01, JS) by their paths
 - [ ] Must have a section when you can generate graphs to see more about the user's journey and achievements.
 - [ ] Graphs must be done using SVG (at least two graphs)

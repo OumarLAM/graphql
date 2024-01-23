@@ -13,42 +13,42 @@
   <body>
     <main class="profile">
       <header>
-        <h2>Welcome, <span id="userLogin"></span>!</h2>
+        <h2>
+          Welcome, <span id="userLastName"></span>
+          <span id="userFirstName"></span>!
+        </h2>
         <a id="logoutButton" alt="logout"
           ><span class="material-symbols-outlined"> logout </span></a
         >
       </header>
+      <p>You joined zone01 at: <span id="createdAt"></span></p>
 
       <!-- XP Amount -->
       <div>
-        <h3>XP Amount</h3>
-        <p>Total XP: <span id="xpAmount"></span></p>
-      </div>
-
-      <!-- Grades -->
-      <div>
-        <h3>Grades</h3>
-        <ul id="gradesList"></ul>
+        <h3>XP Per Piscine</h3>
+        <p>Piscine Go XP: <span id="xpPiscineGoAmount"></span> kB</p>
+        <p>Piscine Go level: <span id="goLevel"></span></p>
+        <p>Div-01 XP: <span id="xpDiv01Amount"></span> kB</p>
+        <p>Div-01 level: <span id="div01Level"></span></p>
+        <p>Piscine JS XP: <span id="xpPiscineJsAmount"></span> kB</p>
+        <p>Piscine JS level: <span id="jsLevel"></span></p>
       </div>
 
       <!-- Audits -->
       <div>
-        <h3>Audits</h3>
-        <ul id="auditsList"></ul>
+        <h3>Audits :</h3>
+        <p>Ratio : <span id="auditRatio"></span></p>
+        <p>Audit done : <span id="auditDone"></span> kB</p>
+        <p>Audit received : <span id="auditReceived"></span> kB</p>
       </div>
 
-      <!-- Skills -->
+      <!-- Projects done -->
       <div>
-        <h3>Skills</h3>
-        <ul id="skillsList"></ul>
+        <h3>Projects :</h3>
+        <p>You've validated <span id="projects"></span> projects</p>
       </div>
-
-      <svg width="600" height="600" id="xpGraph">
-        <!-- Graph title -->
-        <text x="400" y="30" text-anchor="middle" font-size="16" fill="black">
-          XP Earned by Project
-        </text>
-      </svg>
+      <h2>XP Earned by Project</h2>
+      <div id="graph"></div>
     </main>
     <script type="module" src="./assets/scripts/profile.js"></script>
   </body>
