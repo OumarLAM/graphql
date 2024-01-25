@@ -142,3 +142,18 @@ header a span {
   color: #9969ff;
   cursor: pointer;
 }
+
+#graph {
+  background: #eebbbb;
+  padding-left: 10px;
+  margin-bottom: 50px;
+}
+
+.graph-title {
+  display: flex;
+  justify-content: center;
+}
+
+#ratioGraph {
+  background-color: #9a9e9d;
+}

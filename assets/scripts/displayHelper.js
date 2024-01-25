@@ -16,12 +16,4 @@ function displayData(id, xpAmount) {
   document.getElementById(id).innerText = xpAmount;
 }
 
-// function displayListData(data, containerId, property1, property2) {
-//   data.forEach((item) => {
-//     const itemElement = document.createElement("li");
-//     itemElement.innerText = `${property1}: ${item[property1]}, ${property2}: ${item[property2]}`;
-//     document.getElementById(containerId).appendChild(itemElement);
-//   });
-// }
-
 export { displayBasicUserData, displayData };
