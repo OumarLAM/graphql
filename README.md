@@ -1,150 +1,47 @@
-# GraphQL Profile Page Project
+# 🚀 01Talent Profile App 🚀
 
-## Objectives
+Welcome to the 01Talent Profile App! This web application allows users to view and explore their learning journey, achievements, and statistics on the 01Talent platform.
 
-The objective of this project is to learn the GraphQL query language by creating a personalized profile page. You will use the GraphQL endpoint provided by the platform at [https://((DOMAIN))/api/graphql-engine/v1/graphql](https://((DOMAIN))/api/graphql-engine/v1/graphql) to query your own data and populate your profile page.
+## 🛠️ Technologies Used 🛠️
 
-To access your data, a login page needs to be created. The profile page must display basic user identification, XP amount, grades, audits, and skills. Additionally, a mandatory section for generating statistical graphs using SVG should be included.
+- **JavaScript**: The programming language used for client-side scripting.
+- **HTML/CSS**: Standard web technologies for structuring and styling.
+- **SVG**: Scalable Vector Graphics for creating interactive and animated graphs.
+- **GraphQL**: A query language for APIs used to fetch data efficiently.
 
-## Instructions
+## 🚀 Getting Started 🚀
 
-### Profile UI
+1. Clone this repository and navigate to the project folder:
+    ```bash
+    git clone https://github.com/OumarLAM/graphql.git
+    cd graphql
+    ```
 
-- Create a profile UI to display your own school information using data from the GraphQL endpoint.
-- The UI design is flexible, but it must include a statistical section with at least two SVG graphs illustrating different aspects of your journey and achievements at the school.
-- Possible graph combinations include XP earned over time, XP earned by project, audit ratio, projects pass/fail ratio, piscine (JS/Go) stats, attempts for each exercise, and more.
-- Consider principles of good UI design while creating the interface.
+2. Open `index.html` in your preferred web browser.
 
-### Login Page
+## 📜 Features and Sections 📜
 
-- Obtain a JWT to access the GraphQL API from the signin endpoint at [https://((DOMAIN))/api/auth/signin](https://((DOMAIN))/api/auth/signin).
-- Make a POST request to the signin endpoint using Basic authentication with base64 encoding for credentials (username:password or email:password).
-- The login page must support both username:password and email:password combinations, displaying appropriate error messages for invalid credentials.
-- Provide a method for logging out.
-- When making GraphQL queries, use Bearer authentication with the obtained JWT to access data specific to the authenticated user. Extract the user ID from the JWT.
+- **Basic User Identification**: Display essential user information.
+- **XP Amount**: Show the total XP earned.
+- **Level**: Show the actual 01talent's level.
+- **Audits**: Display audit-related information.
+- **Projects Graph**: Visualize XP earned on different projects.
+- **Circular (Pie Chart) Graph**: Represent audit done and received.
 
-### Hosting
+## 📚 Code Structure 📚
 
-- Host your profile using platforms such as GitHub Pages, Netlify, or any other of your choice.
+- **login.js**: Handles the login logic.
+- **profile.js**: Main script for fetching data and rendering the user profile.
+- **displayHelper.js**: Helper functions for displaying user data.
+- **graphqlFetcher.js**: Module for handling GraphQL queries.
 
-### GraphQL Tables and Columns
 
-#### User Table
+## 🌐 Live Demo 🌐
 
-- Contains information about the user.
+Visit [01 Talent profile](https://example.com) for a live demonstration.
 
-```graphql
-user {
-  id
-  login
-}
-```
+## Author 👤
 
-#### Transaction Table
+- [Oumar LAM](https://github.com/OumarLAM) 🚀
 
-- Provides access to XP, and through the user table, audits ratio.
-
-```graphql
-transaction {
-  id
-  type
-  amount
-  objectId
-  userId
-  createdAt
-  path
-}
-```
-
-#### Progress Table
-
-- Includes user progression information.
-
-```graphql
-progress {
-  id
-  userId
-  objectId
-  grade
-  createdAt
-  updatedAt
-  path
-}
-```
-
-#### Result Table
-
-- Gives information about student progression.
-
-```graphql
-result {
-  id
-  objectId
-  userId
-  grade
-  type
-  createdAt
-  updatedAt
-  path
-}
-```
-
-#### Object Table
-
-- Provides information about all objects (exercies/projects).
-
-```graphql
-object {
-  id
-  name
-  type
-  attrs
-}
-```
-
-For more details on tables and their columns, refer to the [database-structure](database-structure) and [database-relations](database-relations) documentation.
-
-## Examples
-
-### Query the user table:
-
-```graphql
-{
-  user {
-    id
-    login
-  }
-}
-```
-
-### Query the object table with arguments:
-```graphql
-{
-  object(where: { id: { _eq: 3323 }}) {
-    name
-    type
-  }
-}
-```
-
-### Nesting using the result and user table:
-```graphql
-{
-  result {
-    id
-    user {
-      id
-      login
-    }
-  }
-}
-```
-
-## Things to learn about this project:
-- GraphQL
-- GraphiQL
-- Hosting
-- JWT
-- Authentication
-- Authorization
-- UI/UX
+Feel free to contribute or open issues if you have any suggestions or improvements!

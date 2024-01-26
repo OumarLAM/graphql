@@ -8,16 +8,6 @@
   src: url("../fonts/IBM_Plex_Mono/IBMPlexMono-Light.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "Poppins Semi Bold";
-  src: url("../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Poppins Light";
-  src: url("../fonts/Poppins/Poppins-Light.ttf") format("truetype");
-}
-
 html {
   height: 100%;
 }

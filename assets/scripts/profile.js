@@ -121,7 +121,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       // Add interactivity
       bar.addEventListener("mouseover", () => {
-        // Change color to green
         bar.setAttribute("fill", "white");
 
         // Show project name above the bar
@@ -150,7 +149,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       // Reset on mouseout
       bar.addEventListener("mouseout", () => {
-        // Change color back to steelblue
         bar.setAttribute("fill", "green");
 
         // Remove texts
@@ -161,7 +159,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       svg.appendChild(bar);
     }
 
-    // Append SVG to the body of the document
     document.getElementById("graph").appendChild(svg);
 
     // *************************** Create Circular (Pie Chart) Graph ****************************** //
@@ -248,7 +245,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     labelAuditReceived.setAttribute("fill", "white");
     pieChartSVG.appendChild(labelAuditReceived);
 
-    // Append SVG to the body of the document
     document.getElementById("ratioGraph").appendChild(pieChartSVG);
 
     // Add event listener for the logout button

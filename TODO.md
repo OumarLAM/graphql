@@ -1,3 +1,0 @@
-- [ ] Handle routes
-- [ ] Optimize the code
-- [ ] Host the website
