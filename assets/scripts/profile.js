@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayData("projects", projects.length);
 
     const transaction = projectsResponse.data.transaction;
-    transaction.sort((a, b) => a.amount - b.amount);
 
     // Create svg container
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -118,20 +117,21 @@ document.addEventListener("DOMContentLoaded", async function () {
       bar.setAttribute("y", 700 - transaction[i].amount / 300);
       bar.setAttribute("width", "20");
       bar.setAttribute("height", transaction[i].amount / 300);
-      bar.setAttribute("fill", "steelblue");
+      bar.setAttribute("fill", "green");
 
       // Add interactivity
       bar.addEventListener("mouseover", () => {
         // Change color to green
-        bar.setAttribute("fill", "green");
+        bar.setAttribute("fill", "white");
 
-        // Show project name below the bar
+        // Show project name above the bar
         let textBelow = document.createElementNS(
           "http://www.w3.org/2000/svg",
           "text"
         );
         textBelow.setAttribute("x", i * 30);
         textBelow.setAttribute("y", 720);
+        textBelow.setAttribute("fill", "white");
         textBelow.textContent = transaction[i].path.split("/").pop();
         svg.appendChild(textBelow);
 
@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         );
         textAbove.setAttribute("x", i * 30);
         textAbove.setAttribute("y", 740);
+        textAbove.setAttribute("fill", "green");
         textAbove.textContent =
           (transaction[i].amount / 1000).toFixed(2) + "xp";
         svg.appendChild(textAbove);
@@ -150,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Reset on mouseout
       bar.addEventListener("mouseout", () => {
         // Change color back to steelblue
-        bar.setAttribute("fill", "steelblue");
+        bar.setAttribute("fill", "green");
 
         // Remove texts
         svg.querySelectorAll("text").forEach((text) => {
@@ -165,8 +166,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // *************************** Create Circular (Pie Chart) Graph ****************************** //
     const totalAudit = auditDone + auditReceived;
-    const radius = 200;
-    const center = { x: 450, y: 300 };
+    const radius = 150;
+    const center = { x: 250, y: 300 };
 
     // Calculate angles
     const angleAuditDone = (auditDone / totalAudit) * 360;
