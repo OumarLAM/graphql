@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           "text"
         );
         textAbove.setAttribute("x", i * 30);
-        textAbove.setAttribute("y", 760 - transaction[i].amount / 45);
+        textAbove.setAttribute("y", 740);
         textAbove.textContent =
           (transaction[i].amount / 1000).toFixed(2) + "xp";
         svg.appendChild(textAbove);
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // *************************** Create Circular (Pie Chart) Graph ****************************** //
     const totalAudit = auditDone + auditReceived;
     const radius = 200;
-    const center = { x: 300, y: 300 };
+    const center = { x: 450, y: 300 };
 
     // Calculate angles
     const angleAuditDone = (auditDone / totalAudit) * 360;
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       "svg"
     );
     pieChartSVG.setAttribute("id", "pieChart");
-    pieChartSVG.setAttribute("width", "500");
+    pieChartSVG.setAttribute("width", "100%");
     pieChartSVG.setAttribute("height", "600");
 
     // Function to create arc path
@@ -219,38 +219,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       "d",
       createArcPath(angleAuditDone, angleAuditDone + angleAuditReceived)
     );
-    pathAuditReceived.setAttribute("fill", "blue");
+    pathAuditReceived.setAttribute("fill", "orange");
     pathAuditReceived.setAttribute(
       "transform",
       "rotate(-90 " + center.x + " " + center.y + ")"
     );
     pieChartSVG.appendChild(pathAuditReceived);
-
-    // Create horizontal bars for auditDone and auditReceived
-    const barWidth = 50;
-    const barHeight = 10;
-
-    const barAuditDone = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "rect"
-    );
-    barAuditDone.setAttribute("x", center.x - barWidth / 2);
-    barAuditDone.setAttribute("y", center.y + radius + 20);
-    barAuditDone.setAttribute("width", barWidth);
-    barAuditDone.setAttribute("height", barHeight);
-    barAuditDone.setAttribute("fill", "green");
-    pieChartSVG.appendChild(barAuditDone);
-
-    const barAuditReceived = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "rect"
-    );
-    barAuditReceived.setAttribute("x", center.x - barWidth / 2);
-    barAuditReceived.setAttribute("y", center.y + radius + 40);
-    barAuditReceived.setAttribute("width", barWidth);
-    barAuditReceived.setAttribute("height", barHeight);
-    barAuditReceived.setAttribute("fill", "blue");
-    pieChartSVG.appendChild(barAuditReceived);
 
     // Create labels for auditDone and auditReceived
     const labelAuditDone = document.createElementNS(
@@ -258,9 +232,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       "text"
     );
     labelAuditDone.textContent = "Audit Done";
-    labelAuditDone.setAttribute("x", center.x + 30);
-    labelAuditDone.setAttribute("y", center.y + radius + 30);
-    labelAuditDone.setAttribute("fill", "black");
+    labelAuditDone.setAttribute("x", center.x - 30);
+    labelAuditDone.setAttribute("y", center.y - 70);
+    labelAuditDone.setAttribute("fill", "white");
     pieChartSVG.appendChild(labelAuditDone);
 
     const labelAuditReceived = document.createElementNS(
@@ -268,9 +242,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       "text"
     );
     labelAuditReceived.textContent = "Audit Received";
-    labelAuditReceived.setAttribute("x", center.x + 30);
-    labelAuditReceived.setAttribute("y", center.y + radius + 50);
-    labelAuditReceived.setAttribute("fill", "black");
+    labelAuditReceived.setAttribute("x", center.x - 50);
+    labelAuditReceived.setAttribute("y", center.y + 100);
+    labelAuditReceived.setAttribute("fill", "white");
     pieChartSVG.appendChild(labelAuditReceived);
 
     // Append SVG to the body of the document

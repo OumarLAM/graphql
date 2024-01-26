@@ -21,32 +21,39 @@
           ><span class="material-symbols-outlined"> logout </span></a
         >
       </header>
-      <p>You joined zone01 at: <span id="createdAt"></span></p>
+      <p class="createdAt">
+        You joined zone01 on: <span id="createdAt"></span>
+      </p>
 
-      <!-- XP Amount -->
-      <div>
-        <h3>Div-01 Statistics</h3>
-        <p>XP: <span id="xpDiv01Amount"></span> kB</p>
-        <p>Level: <span id="div01Level"></span></p>
-      </div>
+      <div class="divAndAudits">
+        <!-- Div-01 data -->
+        <div class="div01">
+          <h3>Div-01 Statistics</h3>
+          <p>XP: <span id="xpDiv01Amount"></span> kB</p>
+          <p>Level: <span id="div01Level"></span></p>
+        </div>
 
-      <!-- Audits -->
-      <div>
-        <h3>Audits :</h3>
-        <p>Ratio : <span id="auditRatio"></span></p>
-        <p>Audit done : <span id="auditDone"></span> kB</p>
-        <p>Audit received : <span id="auditReceived"></span> kB</p>
+        <!-- Audits data -->
+        <div class="audits">
+          <h3>Audits</h3>
+          <p>Audit done : <span id="auditDone"></span> kB</p>
+          <p>Audit received : <span id="auditReceived"></span> kB</p>
+        </div>
       </div>
 
       <!-- Projects done -->
-      <div>
-        <h3>Projects :</h3>
+      <div class="projectsDone">
+        <h3>Projects</h3>
         <p>You've validated <span id="projects"></span> projects</p>
       </div>
+
+      <!-- Graphs -->
       <h2 class="graph-title">XP Earned by Project</h2>
       <div id="graph"></div>
       <h2 class="graph-title">More about audits</h2>
-      <div id="ratioGraph"></div>
+      <div id="ratioGraph">
+        <p>Audit Ratio : <span id="auditRatio"></span></p>
+      </div>
     </main>
     <script type="module" src="./assets/scripts/profile.js"></script>
   </body>
