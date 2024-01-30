@@ -38,7 +38,7 @@ Welcome to the 01Talent Profile App! This web application allows users to view a
 
 ## 🌐 Live Demo 🌐
 
-Visit [01 Talent profile](https://example.com) for a live demonstration.
+Visit [01 Talent profile](https://zone01dakartalent.netlify.app) for a live demonstration.
 
 ## Author 👤
 

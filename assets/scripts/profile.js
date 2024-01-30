@@ -1,5 +1,6 @@
 import { fetchData } from "./graphqlFetcher.js";
 import { displayBasicUserData, displayData } from "./displayHelper.js";
+import { shuffleArray } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   const jwt = localStorage.getItem("jwt");
@@ -100,9 +101,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       }`
     );
     const projects = projectsResponse.data.transaction;
+
     displayData("projects", projects.length);
 
     const transaction = projectsResponse.data.transaction;
+    const topTenProjects = transaction
+      .sort((a, b) => b.amount - a.amount)
+      .slice(0, 10);
+    const shuffledTopTenProjects = shuffleArray(topTenProjects);
 
     // Create svg container
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -111,12 +117,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     svg.setAttribute("height", "800");
 
     // Create bars
-    for (let i = 0; i < transaction.length; i++) {
+    for (let i = 0; i < shuffledTopTenProjects.length; i++) {
       let bar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       bar.setAttribute("x", i * 30);
-      bar.setAttribute("y", 700 - transaction[i].amount / 300);
+      bar.setAttribute("y", 700 - shuffledTopTenProjects[i].amount / 300);
       bar.setAttribute("width", "20");
-      bar.setAttribute("height", transaction[i].amount / 300);
+      bar.setAttribute("height", shuffledTopTenProjects[i].amount / 300);
       bar.setAttribute("fill", "green");
 
       // Add interactivity
@@ -131,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         textBelow.setAttribute("x", i * 30);
         textBelow.setAttribute("y", 720);
         textBelow.setAttribute("fill", "white");
-        textBelow.textContent = transaction[i].path.split("/").pop();
+        textBelow.textContent = shuffledTopTenProjects[i].path.split("/").pop();
         svg.appendChild(textBelow);
 
         // Show amount of xp above the bar
@@ -143,7 +149,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         textAbove.setAttribute("y", 740);
         textAbove.setAttribute("fill", "green");
         textAbove.textContent =
-          (transaction[i].amount / 1000).toFixed(2) + "xp";
+          (shuffledTopTenProjects[i].amount / 1000).toFixed(2) + "xp";
         svg.appendChild(textAbove);
       });
 

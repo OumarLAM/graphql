@@ -8,7 +8,11 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
     <link rel="stylesheet" href="./assets/styles/styles.css" />
-    <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo.png"
+      type="image/x-icon"
+    />
     <title>01 Talent</title>
   </head>
   <body>
@@ -49,13 +53,22 @@
       </div>
 
       <!-- Graphs -->
-      <h2 class="graph-title">XP Earned by Project</h2>
-      <div id="graph">
-        <p>You can sover over a bar to display more details about the corresponding project</p>
-      </div>
-      <h2 class="graph-title">More about audits</h2>
-      <div id="ratioGraph">
-        <p>Audit Ratio : <span id="auditRatio"></span></p>
+      <div class="graphSection">
+        <div class="firstGraph">
+          <h2 class="graph-title">Top 10 Projects done</h2>
+          <div id="graph">
+            <p>
+              You can sover over a bar to display more details about the
+              corresponding project
+            </p>
+          </div>
+        </div>
+        <div class="secondGraph">
+          <h2 class="graph-title">More about audits</h2>
+          <div id="ratioGraph">
+            <p>Audit Ratio : <span id="auditRatio"></span></p>
+          </div>
+        </div>
       </div>
     </main>
     <script type="module" src="./assets/scripts/profile.js"></script>

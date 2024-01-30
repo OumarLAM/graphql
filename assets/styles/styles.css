@@ -109,7 +109,6 @@ body {
     0 0 10px #00d4a1;
 }
 
-
 /* ********* Profile Page ********** */
 .profile {
   color: #fff;
@@ -193,30 +192,64 @@ body {
   font-family: "IBM Plex Mono Light";
 }
 
-.profile .graph-title {
+.profile .graphSection {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.profile .graphSection .firstGraph,
+.secondGraph {
+  width: 45%;
+}
+
+.profile .graphSection .graph-title {
   text-align: center;
   margin: 70px 0 20px;
   font-family: "IBM Plex Mono Bold";
   color: #00d4a1;
 }
-
-.profile #graph {
+.profile .graphSection #graph {
   background: rgba(63, 63, 63, 0.5);
-  padding-left: 10px;
   margin-bottom: 50px;
 }
 
-.profile #graph p {
+.profile .graphSection #svg {
+  width: 80%;
+  padding-left: 30px;
+}
+
+.profile .graphSection #graph p {
   font-family: "IBM Plex Mono Light";
-  padding: 20px;
+  padding-top: 20px;
+  text-align: center;
 }
 
-.profile #ratioGraph {
+.profile .graphSection #ratioGraph {
   background-color: rgba(63, 63, 63, 0.5);
+  height: 880px;
 }
 
-.profile #ratioGraph p {
+.profile .graphSection #ratioGraph p {
   font-family: "IBM Plex Mono Bold";
   padding: 20px;
   color: #00d4a1;
+}
+
+@media (max-width: 950px) {
+  .profile .graphSection {
+    display: block;
+  }
+
+  .profile .graphSection .firstGraph,
+  .secondGraph {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .profile .graphSection #pieChart {
+    margin-left: -50px;
+  }
 }
