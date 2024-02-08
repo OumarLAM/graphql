@@ -1,3 +1,8 @@
+function customBtoa(input) {
+  const str = typeof input === 'string' ? input : String(input);
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
 const domain = "https://learn.zone01dakar.sn";
 
 document
@@ -13,7 +18,7 @@ document
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Basic " + btoa(`${usernameOrEmail}:${password}`),
+          Authorization: "Basic " + customBtoa(`${usernameOrEmail}:${password}`),
         },
       });
 
