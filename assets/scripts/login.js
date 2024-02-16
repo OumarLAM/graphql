@@ -1,40 +1,49 @@
 function customBtoa(input) {
-  const str = typeof input === 'string' ? input : String(input);
+  const str = typeof input === "string" ? input : String(input);
   return btoa(unescape(encodeURIComponent(str)));
 }
 
 const domain = "https://learn.zone01dakar.sn";
 
-document
-  .getElementById("loginForm")
-  .addEventListener("submit", async function (event) {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", async function () {
+  const jwt = localStorage.getItem("jwt");
 
-    const usernameOrEmail = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+  if (jwt) {
+    window.location.href = "profile.html";
+  }
 
-    try {
-      const response = await fetch(`${domain}/api/auth/signin`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Basic " + customBtoa(`${usernameOrEmail}:${password}`),
-        },
-      });
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
+      const usernameOrEmail = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const response = await fetch(`${domain}/api/auth/signin`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Basic " + customBtoa(`${usernameOrEmail}:${password}`),
+          },
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message);
+        }
+
+        const jwt = await response.json();
+
+        // Save JWT to local storage for future API requests
+        localStorage.setItem("jwt", jwt);
+
+        window.location.href = "profile.html";
+      } catch (error) {
+        console.error("Login failed:", error.message);
+        alert("OOPS! Login failed. Check your credentials and retry.");
       }
-
-      const jwt = await response.json();
-
-      // Save JWT to local storage for future API requests
-      localStorage.setItem("jwt", jwt);
-
-      window.location.href = "profile.html";
-    } catch (error) {
-      console.error("Login failed:", error.message);
-      alert("OOPS! Login failed. Check your credentials and retry.");
-    }
-  });
+    });
+});
